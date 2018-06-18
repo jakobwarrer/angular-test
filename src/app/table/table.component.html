@@ -1,0 +1,25 @@
+<form>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="glyphicon glyphicon-search"></i>
+      </div>
+      <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString"> {{searchString}}
+    </div>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <th>Link</th>
+    <th *ngFor="let col of columns">
+      {{col}}
+    </th>
+  </tr>
+  <tr *ngFor="let char of ( characters$ | async ) | filter : 'name' : searchString ">
+    <td>{{char['id']}}</td>
+    <td *ngFor="let col of columns">
+      {{char[col]}}
+    </td>
+  </tr>
+</table>
